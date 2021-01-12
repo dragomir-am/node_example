@@ -8,13 +8,12 @@ pipeline {
         PASSWORD=credentials("example_password_1")
       }
  steps {
-        node {
-    env.NODEJS_HOME = "${tool 'Node 6.x'}"
+   
+    nodejs('<npm>'){
+        env.NODEJS_HOME = "${tool 'Node 6.x'}"
     // on linux / mac
     env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
     sh 'npm --version'
-}
-    nodejs('<npm>'){
         sh "npm install"
         // when chaning any environmental variables ( like edit the ecosystem.config.yml or change some values in the credentials section in jenkins uncomment the next line
         // sh "node_modules/pm2/bin/pm2 kill --name node_example-app"
