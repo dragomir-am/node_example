@@ -7,13 +7,13 @@ pipeline {
         JENKINS_NODE_COOKIE='dontkill'
         PASSWORD=credentials("example_password_1")
       }
-      node {
+ steps {
+        node {
     env.NODEJS_HOME = "${tool 'Node 6.x'}"
     // on linux / mac
     env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
     sh 'npm --version'
 }
- steps {
     nodejs('<npm>'){
         sh "npm install"
         // when chaning any environmental variables ( like edit the ecosystem.config.yml or change some values in the credentials section in jenkins uncomment the next line
